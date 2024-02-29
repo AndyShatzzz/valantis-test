@@ -10,4 +10,4 @@
 - Реализована возможность фильтрации списка продуктов по названию, цене и бренду
 - Если сервер возвращает ошибку, то номер ошибки отображается в консоле, а также отображается Snackbar с ошибкой
 
-## (Сылка на GHPages)[https://andyshatzzz.github.io/valantis-test/]
+## [Сcылка на GHPages](https://andyshatzzz.github.io/valantis-test/)
