@@ -1,3 +1,5 @@
+import { START_PAGE } from '../../../shared/constants/constants';
+
 export const useHandleResetFilter = (
   setFilterPage,
   setPage,
@@ -8,8 +10,8 @@ export const useHandleResetFilter = (
   getProducts
 ) => {
   const handleResetFilter = () => {
-    setFilterPage(1);
-    setPage(1);
+    setFilterPage(START_PAGE);
+    setPage(START_PAGE);
     reset({
       text: '',
       filter: getValues('filter')

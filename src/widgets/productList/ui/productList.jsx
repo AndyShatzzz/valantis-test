@@ -32,7 +32,7 @@ export const ProductList = () => {
     setFilterProduct
   );
 
-  const { register, handleSubmit, formState, reset, setValues, getValues } = form;
+  const { register, handleSubmit, formState, reset, getValues } = form;
   const { isSubmitting, errors, isValid } = formState;
 
   const handleResetFilter = useHandleResetFilter(
@@ -58,7 +58,6 @@ export const ProductList = () => {
           prod.push(filterProduct[i]);
         }
       }
-      console.log(filterPage);
       setProducts(prod);
     } else {
       getProducts();
@@ -78,7 +77,6 @@ export const ProductList = () => {
           fullWidth
           label="Введите текст фильтра"
           sx={{ mt: 3 }}
-          error={errors.text?.message}
           {...register('text', {
             required: {
               value: true,
@@ -94,13 +92,11 @@ export const ProductList = () => {
           id="filter"
           defaultValue="product"
           select
-          value={getValues('filter')}
-          onChange={e => setValues('filter', e.target.value)}
           {...register('filter')}
         >
-          <MenuItem value={'product'}>Название</MenuItem>
-          <MenuItem value={'price'}>Цена</MenuItem>
-          <MenuItem value={'brand'}>Бренд</MenuItem>
+          <MenuItem value={'product' || ''}>Название</MenuItem>
+          <MenuItem value={'price' || ''}>Цена</MenuItem>
+          <MenuItem value={'brand' || ''}>Бренд</MenuItem>
         </TextField>
         <Button
           variant="contained"

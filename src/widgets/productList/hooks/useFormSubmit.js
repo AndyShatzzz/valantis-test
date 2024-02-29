@@ -1,4 +1,11 @@
 import { productRequest } from '../../../shared/API/productRequest';
+import {
+  ERR_CODE_400,
+  ERR_CODE_500,
+  ERR_MESSAGE_400,
+  ERR_MESSAGE_NOT_FOUND,
+  START_PAGE
+} from '../../../shared/constants/constants';
 
 export const useFormSubmit = (
   setFilterPage,
@@ -9,8 +16,8 @@ export const useFormSubmit = (
   setFilterProduct
 ) => {
   const onSubmit = data => {
-    setFilterPage(1);
-    setPage(1);
+    setFilterPage(START_PAGE);
+    setPage(START_PAGE);
     const { filter, text } = data;
 
     let filterText = text;
@@ -44,16 +51,16 @@ export const useFormSubmit = (
         );
         if (uniqueProd.length === 0) {
           setIsSnackbarOpen(true);
-          setErrorMessage('По выбранному фильтру ничего не найдено. Пожалуйста, подождите, загружаем первую страничку');
+          setErrorMessage(ERR_MESSAGE_NOT_FOUND);
         }
 
         await setFilterProduct(uniqueProd);
       } catch (err) {
         console.log(err);
-        if (err === 'Ошибка 400') {
+        if (err === ERR_CODE_400) {
           setIsSnackbarOpen(true);
-          setErrorMessage('Произошла ошибка, проверьте правильность заполнения параметров для фильтра');
-        } else if (err === 'Ошибка 500') {
+          setErrorMessage(ERR_MESSAGE_400);
+        } else if (err === ERR_CODE_500) {
           getFilterProducts();
         }
       }

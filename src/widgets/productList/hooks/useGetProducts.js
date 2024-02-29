@@ -1,10 +1,14 @@
 import { productRequest } from '../../../shared/API/productRequest';
+import { PAGINATION_PAGE } from '../../../shared/constants/constants';
 
 export const useGetProducts = (setProducts, page) => {
   async function getProducts() {
     try {
       setProducts([]);
-      const res = await productRequest({ action: 'get_ids', params: { offset: page * 50 - 50, limit: 50 } });
+      const res = await productRequest({
+        action: 'get_ids',
+        params: { offset: page * PAGINATION_PAGE - PAGINATION_PAGE, limit: PAGINATION_PAGE }
+      });
       const uniqueArr = await res.result.filter((value, index, self) => self.indexOf(value) === index);
 
       const result = await productRequest({
